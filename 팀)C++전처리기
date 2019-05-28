@@ -1,0 +1,35 @@
+전처리기
+
+전처리기  : 파일이 컴파일러로 전달되기 전에 해당파일에 대한 선행작업을 먼저해준다고 해서 전처리기라고 한다. 
+- 전처리기 앞에는 ‘#’를 적는다
+- 전처리기 끝에는 ‘;’이 붙지 않는다
+- 한 줄에 하나의 전처리기만 사용할 수 있고 나눠서 사용하려면 한줄 끝에‘￦‘를 붙인다
+
+#define: 전처리기에서 보통 상수를 정의하게 된다. 
+ ex) define A 100  ex) define str(x) #x  
+#undef: 정의한 상수를 해제시켜준다
+# 해쉬태그를 연속 두 번사용하여 원하는 변수를 붙일수도 있다.
+ ex) define aglue(a,b) a##b
+#if #elseif # else 전처리기의 조건문이다
+ ex)    #if TABLE_SIZE>200
+	#undef TABLE_SIZE
+	#define TABLE_SIZE 200
+	#elif TABLE_SIZE<50
+	#undef TABLE_SIZE
+	#define TABLE_SIZE 50
+	#else
+	#undef TABLE_SIZE
+	#define TABLE_SIZE 100
+	#endif 
+	int table[TABLE_SIZE]; 
+# line: 컴파일 할 때 컴파일 오류가 발생하면 파일 이름과줄번호를 참조하여 오류 메시지를 표시해준다 행번호와 “filename"의 형식을 가진다
+ ex) #line 20 "assigning variable"
+# ifndef: 정의된 값인지 아닌지를 파악하는 전처리기다.
+# include: '<>'괄호는 dev에 지정된 파일을 가져오는 것이고 보통의"(이름)“ '이름‘의 파일을 가져온다.
+
+- 매크로 함수: 전처리기에서 쓰이는 함수처럼 동작하는 매크로를 매크로함수라고 한다.
+  대표적 예) 
+  _LINE_: 컴파일되는 소스코드의 파일의 현재진행을 나타내는 정수 값
+  _FILE_: 문자 그대로의 소스파일의 이름을 포함하는 문자열을 컴파일 해준다.
+  _DATA_: 컴파일 프로세스가 시작된 날짜를 알려준다.
+  _TIME_:컴파일 프로세스가 시작된 시간을 알려준다.
